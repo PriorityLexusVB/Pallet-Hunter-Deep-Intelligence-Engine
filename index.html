@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pallet Hunter — Power Tools Intelligence + Business Plan + Investor Deck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .card { border: 1px solid #e5e7eb; border-radius: 1rem; background: #fff; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas; border: 1px solid #e5e7eb; padding: 2px 6px; border-radius: 8px; background: #f9fafb; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <header class="sticky top-0 z-40 bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center gap-3">
+      <div class="h-10 w-10 rounded-2xl bg-gray-900 text-white flex items-center justify-center font-bold">PH</div>
+      <div class="flex-1">
+        <div class="text-lg font-semibold">Pallet Hunter — Power Tools</div>
+        <div class="text-sm text-gray-600">Research • Business Plan • Investor Pitch • ROI Tools</div>
+      </div>
+      <button id="copyShareBtn" class="px-3 py-2 rounded-xl bg-gray-900 text-white text-sm hover:bg-black">Copy Share Link</button>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Sidebar -->
+    <aside class="lg:col-span-3">
+      <div class="card p-4 sticky top-20">
+        <div class="flex items-center gap-2">
+          <input id="searchInput" class="w-full px-3 py-2 rounded-xl border border-gray-200" placeholder="Search (e.g., batteries, GovDeals, ROI) …" />
+        </div>
+
+        <div class="mt-4 text-xs text-gray-500">Tip: <span class="kbd">Ctrl</span>+<span class="kbd">F</span> still works.</div>
+
+        <nav class="mt-4 space-y-1 text-sm">
+          <div class="text-xs uppercase text-gray-500 mt-3 mb-1">Tools</div>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#roi-calculator">ROI Calculator</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#buy-score">Buy / No-Buy Score</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#app-json">Export App JSON</a>
+
+          <div class="text-xs uppercase text-gray-500 mt-4 mb-1">Research (Power Tools)</div>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#category-overview">1. Category Overview</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#item-tiers">2. Item Tiers</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#roi-map">3. ROI Map</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#local-demand">4. Local Demand (VB)</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#best-sources">5. Best Acquisition Sources</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#signals">6. Triggers / Signals</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#negotiation">7. Negotiation Guide</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#red-flags">8. Red Flags</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#repair-guide">9. Repair / Refurb</a>
+
+          <div class="text-xs uppercase text-gray-500 mt-4 mb-1">Business Plan</div>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#biz-summary">Executive Summary</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#biz-model">Business Model</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#biz-econ">Unit Economics</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#biz-risk">Risk Control</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#biz-scale">Scaling Plan</a>
+
+          <div class="text-xs uppercase text-gray-500 mt-4 mb-1">Investor Pitch</div>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#pitch-deck">Slide-by-Slide Deck</a>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#pitch-ask">Capital Ask Options</a>
+
+          <div class="text-xs uppercase text-gray-500 mt-4 mb-1">Links</div>
+          <a class="block px-3 py-2 rounded-xl hover:bg-gray-100" href="#sources-links">Primary Sources & Platforms</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <section class="lg:col-span-9 space-y-6">
+      <!-- TOOLS -->
+      <div id="roi-calculator" class="card p-5">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-semibold">ROI Calculator</h2>
+            <p class="text-sm text-gray-600 mt-1">Enter your numbers. This outputs gross, net, ROI%, and break-even resale.</p>
+          </div>
+          <button class="px-3 py-2 rounded-xl border border-gray-200 hover:bg-gray-50 text-sm" id="resetCalcBtn">Reset</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label class="text-sm text-gray-700">Buy price ($)</label>
+            <input id="buyPrice" type="number" class="w-full px-3 py-2 rounded-xl border border-gray-200" value="2000" min="0" />
+          </div>
+          <div>
+            <label class="text-sm text-gray-700">Expected resale revenue ($)</label>
+            <input id="resaleRevenue" type="number" class="w-full px-3 py-2 rounded-xl border border-gray-200" value="5200" min="0" />
+          </div>
+          <div>
+            <label class="text-sm text-gray-700">Platform fees (%)</label>
+            <input id="feePct" type="number" class="w-full px-3 py-2 rounded-xl border border-gray-200" value="8" min="0" step="0.1" />
+          </div>
+          <div>
+            <label class="text-sm text-gray-700">Repair + supplies ($)</label>
+            <input id="repairCost" type="number" class="w-full px-3 py-2 rounded-xl border border-gray-200" value="300" min="0" />
+          </div>
+          <div>
+            <label class="text-sm text-gray-700">Other ops costs ($)</label>
+            <input id="opsCost" type="number" class="w-full px-3 py-2 rounded-xl border border-gray-200" value="400" min="0" />
+          </div>
+          <div>
+            <label class="text-sm text-gray-700">Target ROI (%)</label>
+            <input id="targetRoi" type="number" class="w-full px-3 py-2 rounded-xl border border-gray-200" value="35" min="0" step="1" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-5">
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="text-xs text-gray-500">Net Profit</div>
+            <div id="netProfitOut" class="text-lg font-semibold">$0</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="text-xs text-gray-500">ROI %</div>
+            <div id="roiOut" class="text-lg font-semibold">0%</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="text-xs text-gray-500">Break-even Resale</div>
+            <div id="breakevenOut" class="text-lg font-semibold">$0</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="text-xs text-gray-500">Meets Target?</div>
+            <div id="targetOut" class="text-lg font-semibold">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="buy-score" class="card p-5">
+        <h2 class="text-xl font-semibold">Buy / No-Buy Score (Fast Gate)</h2>
+        <p class="text-sm text-gray-600 mt-1">Quick scoring to avoid bad buys. This isn’t “AI magic” — it’s rules.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label class="text-sm">Brand</label>
+            <select id="brandSel" class="w-full px-3 py-2 rounded-xl border border-gray-200">
+              <option value="premium">Premium (Milwaukee / DeWalt / Makita / Bosch / Hilti / Festool)</option>
+              <option value="mid">Mid (Ryobi / Ridgid / Kobalt / Craftsman)</option>
+              <option value="unknown">Unknown / Off-brand</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm">Condition</label>
+            <select id="condSel" class="w-full px-3 py-2 rounded-xl border border-gray-200">
+              <option value="tested">Tested working</option>
+              <option value="untested">Untested</option>
+              <option value="dead">Does not power on</option>
+            </select>
+          </div>
+          <label class="flex items-center gap-2">
+            <input id="missingCharger" type="checkbox" class="h-4 w-4" />
+            <span class="text-sm">Missing charger / battery</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input id="batteryRisk" type="checkbox" class="h-4 w-4" />
+            <span class="text-sm">Battery risk (swollen/leaking/overheating)</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input id="crackedHousing" type="checkbox" class="h-4 w-4" />
+            <span class="text-sm">Cracked housing / structural damage</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input id="manifestMismatch" type="checkbox" class="h-4 w-4" />
+            <span class="text-sm">Manifest/seller info feels unreliable</span>
+          </label>
+        </div>
+
+        <div class="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="text-xs text-gray-500">Score</div>
+            <div id="scoreOut" class="text-lg font-semibold">—</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200 md:col-span-2">
+            <div class="text-xs text-gray-500">Decision</div>
+            <div id="decisionOut" class="text-lg font-semibold">—</div>
+            <div id="decisionWhy" class="text-sm text-gray-600 mt-1">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="app-json" class="card p-5">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-semibold">Export App Integration JSON</h2>
+            <p class="text-sm text-gray-600 mt-1">This is the structured object your Pallet Hunter app can consume.</p>
+          </div>
+          <div class="flex gap-2">
+            <button id="copyJsonBtn" class="px-3 py-2 rounded-xl bg-gray-900 text-white text-sm hover:bg-black">Copy JSON</button>
+            <button id="downloadJsonBtn" class="px-3 py-2 rounded-xl border border-gray-200 text-sm hover:bg-gray-50">Download .json</button>
+          </div>
+        </div>
+        <pre id="jsonOut" class="mono mt-4 p-4 rounded-2xl bg-gray-50 border border-gray-200 overflow-auto text-xs"></pre>
+      </div>
+
+      <!-- RESEARCH -->
+      <div id="category-overview" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">1) Category Overview — Power Tools</h2>
+        <ul class="list-disc pl-5 mt-3 space-y-2 text-sm text-gray-800">
+          <li><b>What it is:</b> Corded + cordless power tools (drills, impacts, saws, grinders, sanders) and supporting ecosystem (batteries, chargers, cases, accessories).</li>
+          <li><b>Why profitable:</b> Year-round demand (DIY + contractors + auto). Durable goods hold resale value; premium brands are highly liquid.</li>
+          <li><b>Common in liquidation:</b> Retail returns, shelf pulls, and overstock are frequent in home improvement liquidation channels.</li>
+          <li><b>Typical sellers:</b> Retailers (returns), government surplus, contractors retiring, estates/garage cleanouts, small shop closures.</li>
+          <li><b>Why undervalued:</b> Sellers optimize for speed/space recovery, not market pricing; many items are lightly used or cosmetic-only.</li>
+        </ul>
+      </div>
+
+      <div id="item-tiers" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">2) Item Tiers</h2>
+
+        <details class="mt-4 p-4 rounded-2xl bg-gray-50 border border-gray-200" open>
+          <summary class="cursor-pointer flex items-center justify-between">
+            <div class="font-semibold">Tier A — High value / low volume / fast flips</div>
+            <div class="text-xs text-gray-500">Expand/Collapse</div>
+          </summary>
+          <div class="mt-3 text-sm text-gray-800 space-y-2">
+            <div><b>Examples:</b> Milwaukee M18 Fuel kits, DeWalt 20V combo kits, Makita brushless kits, Hilti/Festool, jobsite table saws, miter saws.</div>
+            <div><b>Resale ranges:</b> ~$300–$1,000+ depending on kit completeness and condition.</div>
+            <div><b>Why it moves:</b> Contractors pay for known systems and want immediate availability.</div>
+          </div>
+        </details>
+
+        <details class="mt-4 p-4 rounded-2xl bg-gray-50 border border-gray-200">
+          <summary class="cursor-pointer flex items-center justify-between">
+            <div class="font-semibold">Tier B — Medium value / steady movers</div>
+            <div class="text-xs text-gray-500">Expand/Collapse</div>
+          </summary>
+          <div class="mt-3 text-sm text-gray-800 space-y-2">
+            <div><b>Examples:</b> individual drills/impacts, circular saws, grinders, sanders, nailers, mid-tier tool-only listings.</div>
+            <div><b>Resale ranges:</b> ~$50–$300.</div>
+            <div><b>Why it moves:</b> DIY buyers + trades needing a backup tool or quick replacement.</div>
+          </div>
+        </details>
+
+        <details class="mt-4 p-4 rounded-2xl bg-gray-50 border border-gray-200">
+          <summary class="cursor-pointer flex items-center justify-between">
+            <div class="font-semibold">Tier C — Lower value / bundle items</div>
+            <div class="text-xs text-gray-500">Expand/Collapse</div>
+          </summary>
+          <div class="mt-3 text-sm text-gray-800 space-y-2">
+            <div><b>Examples:</b> accessories, mixed lots, older/unknown brands, partial kits, “for parts” units.</div>
+            <div><b>Resale ranges:</b> ~$5–$50 each, best as bundles ($25–$150 lots).</div>
+            <div><b>Why it moves:</b> Budget buyers + parts buyers + “starter kit” bundles.</div>
+          </div>
+        </details>
+      </div>
+
+      <div id="roi-map" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">3) ROI Map (Tier A / B / C)</h2>
+
+        <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="font-semibold">Tier A</div>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+              <li>Buy: $100–$300 (per unit effective)</li>
+              <li>Resale: $300–$1,000+</li>
+              <li>ROI: ~50–150%</li>
+              <li>Flip time: 7–21 days</li>
+              <li>Failure rate: ~5–15%</li>
+              <li>Repairs: usually minimal</li>
+              <li>Typical repair: battery/charger replace ($50–$150)</li>
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="font-semibold">Tier B</div>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+              <li>Buy: $20–$100</li>
+              <li>Resale: $50–$300</li>
+              <li>ROI: ~30–80%</li>
+              <li>Flip time: 10–30 days</li>
+              <li>Failure rate: ~10–30%</li>
+              <li>Repairs: occasional</li>
+              <li>Typical repair: switches/brushes/cord ($10–$40)</li>
+            </ul>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="font-semibold">Tier C</div>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+              <li>Buy: $5–$30</li>
+              <li>Resale: $10–$100 (best as bundles)</li>
+              <li>ROI: ~20–50% (riskier)</li>
+              <li>Flip time: 14–60+ days</li>
+              <li>Failure rate: up to 50%</li>
+              <li>Repairs: usually not worth it</li>
+              <li>Strategy: parts/bundle/wholesale exit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="local-demand" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">4) Local Demand — Virginia Beach Model</h2>
+        <div class="mt-3 text-sm text-gray-800 space-y-3">
+          <ul class="list-disc pl-5 space-y-1">
+            <li><b>Military:</b> frequent relocation → buying/selling tools constantly.</li>
+            <li><b>Contractors:</b> consistent demand for reliable brand ecosystems.</li>
+            <li><b>Students/young adults:</b> budget tier + starter tool bundles.</li>
+            <li><b>Auto industry:</b> grinders, impacts, specialty tools move well.</li>
+            <li><b>Hospitality/tourism:</b> seasonal maintenance demand; more supply during property refresh cycles.</li>
+          </ul>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+              <div class="font-semibold">Peak months</div>
+              <div class="mt-1">March–May (spring projects) • June–August steady</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+              <div class="font-semibold">Worst months</div>
+              <div class="mt-1">Dec–Feb (slower project cycles)</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+              <div class="font-semibold">Weekend vs weekday velocity</div>
+              <div class="mt-1">Weekends strongest. Post Fri/Sat; pickups Sat/Sun.</div>
+            </div>
+            <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+              <div class="font-semibold">Best platforms</div>
+              <div class="mt-1">Facebook Marketplace (local velocity) • OfferUp • eBay (high value)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="best-sources" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">5) Best Acquisition Sources (Ranked)</h2>
+        <ol class="list-decimal pl-5 mt-3 space-y-2 text-sm text-gray-800">
+          <li><b>B-Stock (Home improvement liquidation):</b> consistent pallets/returns; undervalued due to bulk liquidation.</li>
+          <li><b>DirectLiquidation:</b> retailer returns/overstock; frequent tool lots; pricing aims to clear inventory quickly.</li>
+          <li><b>Liquidation.com:</b> mixed pallets; can be very undervalued but requires strict manifest discipline.</li>
+          <li><b>GovDeals:</b> surplus maintenance/tools; sold in lots; value often missed by non-tool buyers.</li>
+          <li><b>Facebook Marketplace:</b> distress sellers + contractor cleanouts; cherry-pick high margin deals fast.</li>
+          <li><b>Craigslist:</b> older demographic sellers; great for estate/garage tool lots.</li>
+          <li><b>OfferUp:</b> fast local “today” deals; good for quick flips and bundles.</li>
+          <li><b>AuctionZip / estate auctions:</b> workshop liquidations; preview matters; undervalued if attendance is low.</li>
+          <li><b>Storage units:</b> high variance; only if you can liquidate bundles efficiently.</li>
+          <li><b>Dealer remodels / shop closures:</b> rare, but high quality tool lots when found.</li>
+          <li><b>School surplus / hospitality upgrades:</b> less common for tools; occasional maintenance lots.</li>
+        </ol>
+      </div>
+
+      <div id="signals" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">6) Triggers / Signals (Gold)</h2>
+        <div class="mt-3 text-sm">
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="font-semibold">High-value phrases</div>
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+              <li>“moving — must sell today”</li>
+              <li>“closing business” / “shop liquidation”</li>
+              <li>“contractor retiring”</li>
+              <li>“garage cleanout”</li>
+              <li>“estate sale — tools”</li>
+              <li>“remodel” / “upgrading tools”</li>
+              <li>“everything must go” / “bundle price”</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="negotiation" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">7) Negotiation Guide</h2>
+        <div class="mt-3 text-sm text-gray-800 space-y-3">
+          <ul class="list-disc pl-5 space-y-1">
+            <li><b>Opening:</b> “I can pick up today and pay cash — is it available?”</li>
+            <li><b>Anchor:</b> Start at ~30–40% under fair used price (leave room to move).</li>
+            <li><b>Frame:</b> “I’m taking the risk on testing/repairs — can you do $X if I grab it now?”</li>
+            <li><b>Go in person:</b> anytime value is $100+ or seller claims “works great.”</li>
+            <li><b>Bring cash:</b> always for local deals; it closes faster.</li>
+            <li><b>Avoid flakes:</b> confirm time/address; “I’m leaving now” cadence.</li>
+            <li><b>Close quickly:</b> bundle offers; solve their problem (space/time).</li>
+            <li><b>Inspect before buying:</b> power-on test, battery health, charger included, cracks, unusual smells, serial label present.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="red-flags" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">8) Red Flags (Do Not Buy)</h2>
+        <ul class="list-disc pl-5 mt-3 space-y-2 text-sm text-gray-800">
+          <li>Does not power on (unless priced as parts)</li>
+          <li>Swollen/leaking battery (safety risk)</li>
+          <li>Missing charger/battery on cordless systems (value collapse)</li>
+          <li>Cracked housing / structural damage</li>
+          <li>Seller won’t allow testing</li>
+          <li>Manifest/listing keeps changing; inconsistent details</li>
+          <li>“Too good to be true” pricing without verification</li>
+        </ul>
+      </div>
+
+      <div id="repair-guide" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">9) Repair / Refurb Guide (Only What’s Worth It)</h2>
+        <div class="mt-3 text-sm text-gray-800 space-y-3">
+          <ul class="list-disc pl-5 space-y-1">
+            <li><b>Common issues:</b> dead batteries, missing chargers, worn brushes (older), bad switches, damaged cords.</li>
+            <li><b>Cost rule:</b> repairs ≤ 20% of expected resale.</li>
+            <li><b>Time rule:</b> if fix takes >45–60 min, usually sell as-is or part out (unless Tier A).</li>
+            <li><b>Tools needed:</b> basic drivers, multimeter, compressed air, cleaning supplies, test battery/charger, extension cord.</li>
+            <li><b>Worth it:</b> Tier A + strong brands. Tier C repairs usually lose money.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BUSINESS PLAN -->
+      <div id="biz-summary" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">Business Plan — Executive Summary</h2>
+        <p class="mt-3 text-sm text-gray-800">
+          Pallet Hunter is an asset-backed resale engine focused on power tools. We buy undervalued inventory from liquidation
+          channels + motivated local sellers, test/clean/light refurb, and sell through the fastest channel for each tier.
+          Core advantage: disciplined sourcing + ROI gates + fast inventory turns (7–30 days typical).
+        </p>
+      </div>
+
+      <div id="biz-model" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">Business Plan — Model</h2>
+        <ul class="list-disc pl-5 mt-3 space-y-2 text-sm text-gray-800">
+          <li><b>Acquisition:</b> pallets/returns + local deals. Target buy: 30–50% of retail equivalent.</li>
+          <li><b>Processing:</b> 24–48h intake SLA; test checklist; clean + photograph.</li>
+          <li><b>Sales routing:</b> local speed (FB/OfferUp) + online margin (eBay) + bundles for low tier.</li>
+          <li><b>Capital loop:</b> reinvest weekly; prioritize cycle time.</li>
+        </ul>
+      </div>
+
+      <div id="biz-econ" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">Business Plan — Unit Economics</h2>
+        <div class="mt-3 text-sm text-gray-800">
+          <p><b>Conservative example:</b> Buy $2,000 → Sell $5,200 → Repairs $300 → Fees/ops $400 → Net ~$2,500 (ROI ~125%).</p>
+          <p class="mt-2">The “money” is not a single jackpot — it’s repeatable cycles + strict no-buy rules.</p>
+        </div>
+      </div>
+
+      <div id="biz-risk" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">Business Plan — Risk Control</h2>
+        <ul class="list-disc pl-5 mt-3 space-y-2 text-sm text-gray-800">
+          <li>Only buy what can be tested (or tested within 48h of pallet intake).</li>
+          <li>No battery safety risks. No structural damage.</li>
+          <li>Parts/bundle exit plan for imperfect inventory.</li>
+          <li>Diversified channels (not platform-dependent).</li>
+        </ul>
+      </div>
+
+      <div id="biz-scale" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">Business Plan — Scaling</h2>
+        <ul class="list-disc pl-5 mt-3 space-y-2 text-sm text-gray-800">
+          <li><b>Phase 1:</b> Solo operator, $5k–$15k capital, weekly cycles.</li>
+          <li><b>Phase 2:</b> Add helper(s), 2–4 pallets/month, delegated testing/listing.</li>
+          <li><b>Phase 3:</b> Multi-city SOP replication; optional app for deal scoring + ops routing.</li>
+        </ul>
+      </div>
+
+      <!-- PITCH DECK -->
+      <div id="pitch-deck" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">Investor Pitch — Slide-by-Slide</h2>
+        <div class="mt-3 text-sm text-gray-800 space-y-3">
+          <ol class="list-decimal pl-5 space-y-2">
+            <li><b>Title:</b> Pallet Hunter — predictable cashflow from liquidation mispricing</li>
+            <li><b>Problem:</b> liquidation priced for speed, not value</li>
+            <li><b>Opportunity:</b> power tools hold value + have constant demand</li>
+            <li><b>Solution:</b> acquire → test → light refurb → sell → reinvest</li>
+            <li><b>Workflow:</b> SLA-driven intake + routing by tier</li>
+            <li><b>Economics:</b> conservative ROI example + cycle time</li>
+            <li><b>Go-to-market:</b> FB/OfferUp velocity + eBay margin</li>
+            <li><b>Sourcing moat:</b> liquidation + surplus + distress signals + SOP discipline</li>
+            <li><b>Risk:</b> asset-backed + strict no-buy rules + parts exit</li>
+            <li><b>Scaling:</b> operator → team → multi-city → optional software</li>
+            <li><b>Ask:</b> working capital partner, asset-backed structure</li>
+            <li><b>Close:</b> repeatable system, ready to deploy now</li>
+          </ol>
+        </div>
+      </div>
+
+      <div id="pitch-ask" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">Capital Ask Options (Copy/Paste)</h2>
+        <div class="mt-3 text-sm text-gray-800 space-y-3">
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="font-semibold">Option A — Revenue Share Until Return</div>
+            <div class="mt-1">Investor funds inventory. Net profits split until principal + agreed return is repaid, then renegotiate or exit.</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="font-semibold">Option B — Fixed Return Per Cycle (Asset-backed)</div>
+            <div class="mt-1">Investor receives fixed % return per 30 days, supported by inventory and sales records.</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-gray-50 border border-gray-200">
+            <div class="font-semibold">Option C — Equity + Cashflow Hybrid</div>
+            <div class="mt-1">Smaller equity stake with ongoing cashflow participation from operations.</div>
+          </div>
+          <div class="text-xs text-gray-500">Note: final terms should be reviewed with counsel for compliance in your state.</div>
+        </div>
+      </div>
+
+      <!-- LINKS -->
+      <div id="sources-links" class="card p-5 content-block">
+        <h2 class="text-xl font-semibold">Primary Sources & Platforms (Clickable)</h2>
+        <ul class="list-disc pl-5 mt-3 space-y-2 text-sm">
+          <li><a class="text-blue-700 hover:underline" href="https://bstock.com/homedepot/" target="_blank" rel="noreferrer">B-Stock (Home Depot liquidation)</a></li>
+          <li><a class="text-blue-700 hover:underline" href="https://www.directliquidation.com/" target="_blank" rel="noreferrer">DirectLiquidation</a></li>
+          <li><a class="text-blue-700 hover:underline" href="https://www.liquidation.com/" target="_blank" rel="noreferrer">Liquidation.com</a></li>
+          <li><a class="text-blue-700 hover:underline" href="https://www.govdeals.com/" target="_blank" rel="noreferrer">GovDeals</a></li>
+          <li><a class="text-blue-700 hover:underline" href="https://www.auctionzip.com/" target="_blank" rel="noreferrer">AuctionZip</a></li>
+          <li><a class="text-blue-700 hover:underline" href="https://www.ebay.com/sch/i.html?_nkw=milwaukee+power+tools&LH_Sold=1" target="_blank" rel="noreferrer">eBay sold comps (pricing validation)</a></li>
+        </ul>
+      </div>
+
+      <footer class="py-10 text-xs text-gray-500">
+        <div>Built as a single-file app for fast sharing. Host anywhere. Update the JSON model as you learn.</div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // -------------------------
+    // Data model (App JSON)
+    // -------------------------
+    const appModel = {
+      category: "Power Tools",
+      tier_A_items: [
+        "Milwaukee M18 Fuel cordless kit",
+        "DeWalt 20V cordless combo kit",
+        "Hilti laser measure",
+        "Festool track saw",
+        "Makita 18V brushless tools",
+        "Jobsite table saw / miter saw"
+      ],
+      tier_B_items: [
+        "DeWalt corded drill",
+        "Makita circular saw",
+        "Ryobi 18V impact driver",
+        "Bosch random orbit sander",
+        "Milwaukee angle grinder"
+      ],
+      tier_C_items: [
+        "Assorted drill bits and accessories",
+        "Tool-only listings without battery/charger",
+        "Chargers/batteries sold separately",
+        "Broken tools for parts",
+        "Mixed low-end tool bundles"
+      ],
+      signals: [
+        "moving — must sell today",
+        "liquidating shop tools",
+        "contractor retiring",
+        "estate sale — tools",
+        "remodel/renovation sale",
+        "bulk power tools lot",
+        "closing business"
+      ],
+      red_flags: [
+        "tool doesn’t power on",
+        "swollen/leaking battery",
+        "missing charger or battery pack",
+        "cracked housing or casing",
+        "seller won’t allow testing",
+        "manifest/details keep changing"
+      ],
+      local_demand_score: 7,
+      repair_difficulty_score: 4,
+      expected_roi_percent: [30, 100],
+      average_flip_time_days: [7, 30],
+      best_sources: [
+        "B-Stock (Home Depot)",
+        "DirectLiquidation",
+        "Liquidation.com",
+        "GovDeals",
+        "Facebook Marketplace",
+        "Craigslist",
+        "OfferUp",
+        "AuctionZip"
+      ],
+      peak_months: ["March", "April", "May"],
+      negotiation_tactics: [
+        "Offer cash + pickup today",
+        "Bundle items for discount",
+        "Anchor using missing parts/defects",
+        "Test on the spot",
+        "Walk away on safety risk"
+      ],
+      recommended_buy_price_strategy:
+        "Target 30–50% of equivalent retail (lower for missing charger/battery). Repairs must stay ≤20% of expected resale. Prefer premium brands with testable condition; bundle low-tier inventory and maintain fast cycle times."
+    };
+
+    const jsonOut = document.getElementById("jsonOut");
+    jsonOut.textContent = JSON.stringify(appModel, null, 2);
+
+    // -------------------------
+    // ROI Calculator
+    // -------------------------
+    const el = (id) => document.getElementById(id);
+
+    function fmtMoney(n) {
+      const v = Number(n || 0);
+      return v.toLocaleString(undefined, { style: "currency", currency: "USD" });
+    }
+
+    function recalc() {
+      const buy = Number(el("buyPrice").value || 0);
+      const rev = Number(el("resaleRevenue").value || 0);
+      const feePct = Number(el("feePct").value || 0) / 100;
+      const repair = Number(el("repairCost").value || 0);
+      const ops = Number(el("opsCost").value || 0);
+      const target = Number(el("targetRoi").value || 0);
+
+      const fees = rev * feePct;
+      const net = rev - fees - repair - ops - buy;
+      const roi = buy > 0 ? (net / buy) * 100 : 0;
+
+      const breakeven = (buy + repair + ops) / (1 - feePct || 1);
+
+      el("netProfitOut").textContent = fmtMoney(net);
+      el("roiOut").textContent = `${roi.toFixed(1)}%`;
+      el("breakevenOut").textContent = fmtMoney(breakeven);
+      el("targetOut").textContent = roi >= target ? "YES" : "NO";
+      el("targetOut").className = "text-lg font-semibold " + (roi >= target ? "text-green-700" : "text-red-700");
+    }
+
+    ["buyPrice","resaleRevenue","feePct","repairCost","opsCost","targetRoi"].forEach(id => {
+      el(id).addEventListener("input", recalc);
+    });
+    el("resetCalcBtn").addEventListener("click", () => {
+      el("buyPrice").value = 2000;
+      el("resaleRevenue").value = 5200;
+      el("feePct").value = 8;
+      el("repairCost").value = 300;
+      el("opsCost").value = 400;
+      el("targetRoi").value = 35;
+      recalc();
+    });
+    recalc();
+
+    // -------------------------
+    // Buy/No-Buy Score
+    // -------------------------
+    function scoreDecision() {
+      let score = 0;
+      const brand = el("brandSel").value;
+      const cond = el("condSel").value;
+
+      // brand weight
+      if (brand === "premium") score += 30;
+      if (brand === "mid") score += 15;
+      if (brand === "unknown") score += 0;
+
+      // condition weight
+      if (cond === "tested") score += 30;
+      if (cond === "untested") score += 10;
+      if (cond === "dead") score -= 80;
+
+      // penalties
+      if (el("missingCharger").checked) score -= 20;
+      if (el("batteryRisk").checked) score -= 100;
+      if (el("crackedHousing").checked) score -= 40;
+      if (el("manifestMismatch").checked) score -= 20;
+
+      // clamp 0..100
+      score = Math.max(0, Math.min(100, score));
+      el("scoreOut").textContent = score;
+
+      let decision = "HOLD / NEEDS MORE INFO";
+      let why = "Test it, verify completeness, confirm comps, then decide.";
+      let cls = "text-yellow-700";
+
+      if (el("batteryRisk").checked || cond === "dead") {
+        decision = "NO-BUY";
+        why = "Safety / dead unit risk is too high. Only consider as parts at extreme discount.";
+        cls = "text-red-700";
+      } else if (score >= 70) {
+        decision = "BUY";
+        why = "High liquidity + acceptable risk. Move fast, test, and list within 48h.";
+        cls = "text-green-700";
+      } else if (score >= 50) {
+        decision = "BUY IF PRICE IS RIGHT";
+        why = "Proceed only if the buy price is deeply discounted and you can test immediately.";
+        cls = "text-blue-700";
+      } else {
+        decision = "NO-BUY / ONLY BUNDLE";
+        why = "Low score. If you buy at all, do so as a bundle/parts play with a quick exit.";
+        cls = "text-red-700";
+      }
+
+      el("decisionOut").textContent = decision;
+      el("decisionOut").className = "text-lg font-semibold " + cls;
+      el("decisionWhy").textContent = why;
+    }
+
+    ["brandSel","condSel","missingCharger","batteryRisk","crackedHousing","manifestMismatch"].forEach(id => {
+      el(id).addEventListener("input", scoreDecision);
+      el(id).addEventListener("change", scoreDecision);
+    });
+    scoreDecision();
+
+    // -------------------------
+    // Copy/Download JSON
+    // -------------------------
+    el("copyJsonBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(appModel, null, 2));
+        el("copyJsonBtn").textContent = "Copied!";
+        setTimeout(() => el("copyJsonBtn").textContent = "Copy JSON", 900);
+      } catch {
+        alert("Clipboard blocked. Select and copy manually.");
+      }
+    });
+
+    el("downloadJsonBtn").addEventListener("click", () => {
+      const blob = new Blob([JSON.stringify(appModel, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "pallet-hunter-power-tools.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // -------------------------
+    // Share link (just copies current URL)
+    // -------------------------
+    el("copyShareBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        el("copyShareBtn").textContent = "Link Copied!";
+        setTimeout(() => el("copyShareBtn").textContent = "Copy Share Link", 900);
+      } catch {
+        alert("Clipboard blocked. Copy the URL manually.");
+      }
+    });
+
+    // -------------------------
+    // Search (simple highlight + scroll to first match)
+    // -------------------------
+    const searchInput = el("searchInput");
+    let lastHighlights = [];
+
+    function clearHighlights() {
+      lastHighlights.forEach(span => {
+        const parent = span.parentNode;
+        parent.replaceChild(document.createTextNode(span.textContent), span);
+        parent.normalize();
+      });
+      lastHighlights = [];
+    }
+
+    function highlightTerm(term) {
+      if (!term) return;
+      const blocks = document.querySelectorAll(".content-block, #roi-calculator, #buy-score, #app-json, #sources-links");
+      const re = new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi");
+      let first = null;
+
+      blocks.forEach(block => {
+        const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
+        let node;
+        const textNodes = [];
+        while ((node = walker.nextNode())) {
+          if (node.nodeValue && re.test(node.nodeValue)) textNodes.push(node);
+        }
+
+        textNodes.forEach(tn => {
+          const frag = document.createDocumentFragment();
+          const parts = tn.nodeValue.split(re);
+          const matches = tn.nodeValue.match(re) || [];
+          parts.forEach((p, i) => {
+            frag.appendChild(document.createTextNode(p));
+            if (i < matches.length) {
+              const mark = document.createElement("span");
+              mark.className = "bg-yellow-200 rounded px-1";
+              mark.textContent = matches[i];
+              frag.appendChild(mark);
+              lastHighlights.push(mark);
+              if (!first) first = mark;
+            }
+          });
+          tn.parentNode.replaceChild(frag, tn);
+        });
+      });
+
+      if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    let searchTimer = null;
+    searchInput.addEventListener("input", () => {
+      if (searchTimer) clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        clearHighlights();
+        const term = searchInput.value.trim();
+        if (term.length >= 2) highlightTerm(term);
+      }, 180);
+    });
+  </script>
+</body>
+</html>
